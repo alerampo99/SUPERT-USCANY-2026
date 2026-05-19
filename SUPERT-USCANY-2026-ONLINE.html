@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUPERT-USCANY 21-24 Maggio 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tuscan: {
+                            gold: '#d97706', terracotta: '#c2410c', wine: '#881337',
+                            olive: '#15803d', cream: '#fdfbf7', dark: '#1e1b18',
+                            slate: '#2d3748', cardblue: '#4a6b8c'
+                        }
+                    },
+                    fontFamily: { sans: ['Plus Jakarta Sans','sans-serif'], comfortaa: ['Comfortaa','cursive'] }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfbf7; }
+        .text-gradient { background: linear-gradient(135deg, #c2410c 0%, #881337 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header-bg { background: linear-gradient(135deg, rgba(30,27,24,0.95) 0%, rgba(136,19,55,0.9) 100%), url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80') center/cover; }
+        .modal-anim { transition: opacity 0.3s ease, transform 0.3s ease; }
+    </style>
+</head>
+<body class="text-tuscan-dark pb-16 antialiased">
+
+<!-- HEADER & HERO -->
+<header class="header-bg text-white relative overflow-hidden shadow-xl rounded-b-[40px] px-6 py-12 md:py-20 text-center">
+    <div class="absolute inset-0 bg-black opacity-40 z-0"></div>
+    <div class="relative z-10 max-w-4xl mx-auto">
+        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-2 rounded-full text-xs md:text-sm font-semibold mb-4 border border-white/20">
+            🚐 IL ROAD TRIP DEGLI EROI · 7 AMICI IN MEZZO AI COLLI
+        </div>
+        <h1 class="font-comfortaa font-bold text-4xl md:text-7xl tracking-tight mb-2">SUPERT-USCANY</h1>
+        <p class="text-tuscan-gold font-bold text-lg md:text-2xl tracking-widest uppercase mb-8">21-24 Maggio 2026</p>
+        <div class="bg-black/40 backdrop-blur-md rounded-2xl p-6 max-w-xl mx-auto border border-white/10 shadow-lg">
+            <h3 class="text-xs uppercase tracking-wider text-amber-400 font-bold mb-3">⏳ Conto alla Rovescia per la Partenza da Dongo</h3>
+            <div class="grid grid-cols-4 gap-2 text-center">
+                <div class="bg-white/10 p-2 rounded-lg"><span id="countdown-days" class="block text-2xl md:text-4xl font-extrabold">00</span><span class="text-[10px] uppercase text-gray-300">Giorni</span></div>
+                <div class="bg-white/10 p-2 rounded-lg"><span id="countdown-hours" class="block text-2xl md:text-4xl font-extrabold">00</span><span class="text-[10px] uppercase text-gray-300">Ore</span></div>
+                <div class="bg-white/10 p-2 rounded-lg"><span id="countdown-mins" class="block text-2xl md:text-4xl font-extrabold">00</span><span class="text-[10px] uppercase text-gray-300">Minuti</span></div>
+                <div class="bg-white/10 p-2 rounded-lg"><span id="countdown-secs" class="block text-2xl md:text-4xl font-extrabold text-tuscan-gold">00</span><span class="text-[10px] uppercase text-gray-300">Secondi</span></div>
+            </div>
+            <p class="text-xs text-gray-300 mt-3 italic">Partenza fissata per giovedì 21 maggio alle 5:00! Sei pronto col salame? 🥩</p>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 mt-8">
+
+    <!-- QUICK STATS BAR -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div onclick="openModal('participants-modal')" class="bg-white p-4 rounded-2xl shadow-sm border border-orange-100 flex items-center gap-4 cursor-pointer hover:shadow-md hover:scale-[1.02] transition-all duration-200">
+            <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-xl animate-pulse">👥</div>
+            <div><span class="block text-xs text-gray-400 font-medium">Partecipanti (Clicca!)</span><span class="text-lg font-bold text-gradient">7 Coraggiosi 🦊</span></div>
+        </div>
+        <div onclick="openModal('food-modal')" class="bg-white p-4 rounded-2xl shadow-sm border border-orange-100 flex items-center gap-4 cursor-pointer hover:shadow-md hover:scale-[1.02] transition-all duration-200">
+            <div class="w-12 h-12 bg-rose-100 text-rose-700 rounded-xl flex items-center justify-center text-xl">🍷</div>
+            <div><span class="block text-xs text-gray-400 font-medium">Mangiare e Bere (Clicca!)</span><span class="text-lg font-bold">Ristoranti & Vino 🍕</span></div>
+        </div>
+        <div onclick="openModal('tappe-modal')" class="bg-white p-4 rounded-2xl shadow-sm border border-orange-100 flex items-center gap-4 cursor-pointer hover:shadow-md hover:scale-[1.02] transition-all duration-200">
+            <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl">🗺️</div>
+            <div><span class="block text-xs text-gray-400 font-medium">Tappe Principali (Clicca!)</span><span class="text-lg font-bold">Firenze → Siena 🏰</span></div>
+        </div>
+        <div onclick="openModal('intrattenimento-modal')" class="bg-white p-4 rounded-2xl shadow-sm border border-orange-100 flex items-center gap-4 cursor-pointer hover:shadow-md hover:scale-[1.02] transition-all duration-200">
+            <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center text-xl">🎵</div>
+            <div><span class="block text-xs text-gray-400 font-medium">Intrattenimento (Clicca!)</span><span class="text-lg font-bold">Playlist & Fun 🎉</span></div>
+        </div>
+    </section>
+
+    <!-- SOUNDBOARD -->
+    <section class="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-8">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="flex h-3 w-3 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span></span>
+                <div><h4 class="font-bold text-sm text-amber-900">🎵 Soundboard del Viaggio!</h4><p class="text-xs text-amber-700">Abilita l'audio e premi per simulare l'atmosfera.</p></div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <button onclick="playSound('horn')" class="bg-white hover:bg-amber-100 text-amber-800 border border-amber-200 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition">🚚 Partenza Dongo! (Clacson)</button>
+                <button onclick="playSound('clink')" class="bg-white hover:bg-amber-100 text-amber-800 border border-amber-200 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition">🥂 Brindisi!</button>
+                <button onclick="playSound('alarm')" class="bg-white hover:bg-amber-100 text-amber-800 border border-amber-200 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition">🚨 Multa 7€!</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN GRID -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- ITINERARIO -->
+        <div class="lg:col-span-2">
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-orange-50/50">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <div>
+                        <h2 class="font-comfortaa font-bold text-2xl text-tuscan-wine">L'Itinerario dei 4 Giorni</h2>
+                        <p class="text-xs text-gray-500">Clicca sui giorni per esplorare le tappe dettagliate.</p>
+                    </div>
+                    <div class="flex bg-gray-100 p-1 rounded-xl w-full sm:w-auto overflow-x-auto">
+                        <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs font-bold transition-all bg-white text-tuscan-wine shadow-sm">GIO 21</button>
+                        <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs font-bold transition-all text-gray-500 hover:text-tuscan-dark">VEN 22</button>
+                        <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs font-bold transition-all text-gray-500 hover:text-tuscan-dark">SAB 23</button>
+                        <button onclick="switchTab(4)" id="tab-btn-4" class="tab-btn flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs font-bold transition-all text-gray-500 hover:text-tuscan-dark">DOM 24</button>
+                    </div>
+                </div>
+
+                <!-- DAY 1 -->
+                <div id="day-content-1" class="day-panel space-y-6">
+                    <div class="bg-gradient-to-r from-amber-50 to-orange-50 p-4 rounded-2xl flex items-center justify-between border border-amber-100/50">
+                        <div><span class="text-xs uppercase tracking-wider text-tuscan-gold font-bold">Giovedì 21 Maggio · Giorno 1</span><h3 class="font-comfortaa font-bold text-xl text-tuscan-dark">L'Arrivo a Firenze 🏛️</h3></div>
+                        <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-full">📍 Firenze Centro</span>
+                    </div>
+                    <div class="relative border-l-2 border-dashed border-amber-200 pl-6 ml-4 space-y-6">
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-tuscan-wine text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🚐</span>
+                            <div><span class="text-xs font-extrabold text-tuscan-wine">05:00</span><h4 class="font-bold text-base">Partenza da Dongo 🌅</h4><p class="text-sm text-gray-600">Ritrovo ad alba siderale. Si parte per l'avventura toscana!</p>
+                            <div class="mt-2 bg-red-50 border border-red-100 rounded-xl p-3 text-xs text-red-800"><strong>⚠️ REGOLA DEL SALAME:</strong> Colazione con pane, salame e vino obbligatoria, oppure <strong>multa di 7€</strong> nella cassa comune! 💸</div></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-amber-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">📍</span>
+                            <div><span class="text-xs font-extrabold text-amber-600">10:00</span><h4 class="font-bold text-base">Arrivo a Firenze & Idratazione 🍻</h4><p class="text-sm text-gray-600">Birretta o ape per idratarsi, primo contatto con la bellissima Firenze.</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-emerald-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🥪</span>
+                            <div><span class="text-xs font-extrabold text-emerald-600">Pranzo</span><h4 class="font-bold text-base">Schiacciata all'Antico Vinaio o Mercato Centrale</h4><p class="text-sm text-gray-600">Pranzo al sacco in loco — consigliatissima la schiacciata fiorentina.</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🔑</span>
+                            <div><span class="text-xs font-extrabold text-blue-600">Dalle 14:00</span><h4 class="font-bold text-base">Check-in Appartamento 🏠</h4><p class="text-sm text-gray-600">Via Monalda, 4, 50123 Firenze (Prenotato da Gio su Airbnb).</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-purple-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🍁</span>
+                            <div><span class="text-xs font-extrabold text-purple-600">Pomeriggio</span><h4 class="font-bold text-base">Giro in Centro & "Missione Speciale"</h4><p class="text-sm text-gray-600">Passeggiata turistica e missione speciale per scovare del fumo per l'inimitabile Ciuse. 🐴</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-rose-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🥩</span>
+                            <div><span class="text-xs font-extrabold text-rose-600">19:30</span><h4 class="font-bold text-base">Cena Fiorentina Reale 🔥</h4><p class="text-sm text-gray-600">Grande cena a base di FIORENTINA presso la <strong>Trattoria dall'Oste</strong>!</p>
+                            <div class="mt-2 bg-rose-50 border border-rose-100 rounded-xl p-3 text-xs text-rose-800 space-y-1"><p>✍️ <strong>Prenotazione:</strong> Per 7 persone a nome <em>Anna Bellati</em> alle 19:30.</p><p>📍 <strong>Indirizzo:</strong> Borgo San Lorenzo, 31 (9 min. a piedi).</p><p class="text-emerald-700 font-bold">✅ 10% di sconto incluso!</p></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 2 -->
+                <div id="day-content-2" class="day-panel hidden space-y-6">
+                    <div class="bg-gradient-to-r from-amber-50 to-orange-50 p-4 rounded-2xl flex items-center justify-between border border-amber-100/50">
+                        <div><span class="text-xs uppercase tracking-wider text-tuscan-gold font-bold">Venerdì 22 Maggio · Giorno 2</span><h3 class="font-comfortaa font-bold text-xl text-tuscan-dark">Cultura e Trasferimento 🗽</h3></div>
+                        <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-full">🏰 San Gimignano</span>
+                    </div>
+                    <div class="relative border-l-2 border-dashed border-amber-200 pl-6 ml-4 space-y-6">
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-amber-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">⏰</span>
+                            <div><span class="text-xs font-extrabold text-amber-600">Check-out entro le 10:00</span><h4 class="font-bold text-base">Sveglia, Colazione & Bagagli ☕</h4><p class="text-sm text-gray-600">Colazione e preparazione per lasciare l'appartamento fiorentino.</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🎨</span>
+                            <div><span class="text-xs font-extrabold text-purple-600">09:00</span><h4 class="font-bold text-base">Gallerie degli Uffizi 🖼️</h4><p class="text-sm text-gray-600">Immersione nella grande arte toscana!</p><p class="text-xs text-amber-700 font-semibold mt-1">📌 Ritrovo: Cancello ingresso 1, Piazzale degli Uffizi.</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-emerald-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🥙</span>
+                            <div><span class="text-xs font-extrabold text-emerald-600">Pranzo</span><h4 class="font-bold text-base">Il Tempio del Lampredotto</h4><p class="text-sm text-gray-600">Consigliato <strong>Il Cernacchio (Food & Wine)</strong> per un lampredotto memorabile.</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🏛️</span>
+                            <div><span class="text-xs font-extrabold text-blue-600">Pomeriggio</span><h4 class="font-bold text-base">Galleria dell'Accademia</h4><p class="text-sm text-gray-600">Visita al David di Michelangelo — anche se già ci sentiamo tutti dei David.</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-tuscan-wine text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🚐</span>
+                            <div><span class="text-xs font-extrabold text-tuscan-wine">17:00</span><h4 class="font-bold text-base">Partenza verso San Gimignano 🗼</h4><p class="text-sm text-gray-600">Ci lasciamo Firenze alle spalle, arrivo previsto alle 18:10 (70 km circa, ~1h10m).</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-indigo-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🏨</span>
+                            <div><span class="text-xs font-extrabold text-indigo-600">Entro le 19:00</span><h4 class="font-bold text-base">Check-in "La Locanda di Querecchio" 🏡</h4><p class="text-sm text-gray-600">Sistemazione nelle camere a San Gimignano.</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🍸</span>
+                            <div><span class="text-xs font-extrabold text-red-600">Tardo Pomeriggio</span><h4 class="font-bold text-base">Aperitivo "Spezzagambe" & Esplorazione 🦵</h4><p class="text-sm text-gray-600">Primo approccio al borgo con un aperitivo bello tosto.</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-rose-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">💀</span>
+                            <div><span class="text-xs font-extrabold text-rose-600">20:00 - 20:30</span><h4 class="font-bold text-base">Cena con Delitto "La Mangiatoia" 🔪</h4><p class="text-sm text-gray-600">Si gioca a "miscela" per stabilire chi nel gruppo dovrà morire!</p>
+                            <div class="mt-2 bg-rose-50 border border-rose-100 rounded-xl p-3 text-xs text-rose-800 space-y-1"><p>✍️ <strong>Prenotazione:</strong> Per 7 persone a nome <em>Nicholas</em>.</p><p>📍 <strong>Indirizzo:</strong> Via Mainardi, 5, San Gimignano (6 min. a piedi).</p></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 3 -->
+                <div id="day-content-3" class="day-panel hidden space-y-6">
+                    <div class="bg-gradient-to-r from-amber-50 to-orange-50 p-4 rounded-2xl flex items-center justify-between border border-amber-100/50">
+                        <div><span class="text-xs uppercase tracking-wider text-tuscan-gold font-bold">Sabato 23 Maggio · Giorno 3</span><h3 class="font-comfortaa font-bold text-xl text-tuscan-dark">Colli, Degustazione e Mare 🍷</h3></div>
+                        <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-full">🍷 Bolgheri & Mare</span>
+                    </div>
+                    <div class="relative border-l-2 border-dashed border-amber-200 pl-6 ml-4 space-y-6">
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-amber-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🚐</span>
+                            <div><span class="text-xs font-extrabold text-amber-600">09:00</span><h4 class="font-bold text-base">Partenza da San Gimignano</h4><p class="text-sm text-gray-600">In viaggio verso la città etrusca di Volterra (30 km, ~40 min).</p><p class="text-xs italic text-gray-500 mt-1">🚽 Pausa pipì tattica di gruppo con vista panoramica mozzafiato sui colli toscani.</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-emerald-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🏛️</span>
+                            <div><span class="text-xs font-extrabold text-emerald-600">09:45 - 14:00</span><h4 class="font-bold text-base">Esplorazione Volterra & Pranzo</h4><p class="text-sm text-gray-600">Passeggiata nel borgo medievale etrusco e pranzo locale.</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-tuscan-wine text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🍷</span>
+                            <div><span class="text-xs font-extrabold text-tuscan-wine">15:00</span><h4 class="font-bold text-base">Arrivo a Bolgheri</h4><p class="text-sm text-gray-600">La patria dei Super Tuscan. Da Volterra a Bolgheri ~70 km, ~1h.</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-purple-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🍾</span>
+                            <div><span class="text-xs font-extrabold text-purple-700">17:00 - 18:30</span><h4 class="font-bold text-base">Degustazione Villanovian 🏆</h4><p class="text-sm text-gray-600">La tanto attesa degustazione vini!</p>
+                            <div class="mt-2 bg-purple-50 border border-purple-100 rounded-xl p-3 text-xs text-purple-800 space-y-1"><p>🍷 <strong>Cantina:</strong> Azienda Agricola Villa Noviana, Via Santa Maddalena, 172/B, Bolgheri.</p><p>✅ <strong>Prenotazione:</strong> A nome <em>Claudio Barbieri</em>.</p></div></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🏊</span>
+                            <div><span class="text-xs font-extrabold text-blue-600">Tardo Pomeriggio</span><h4 class="font-bold text-base">Tuffo al Mare a Marina di Castagneto 🌊</h4><p class="text-sm text-gray-600">Bagno rigenerante al tramonto.</p><p class="text-xs font-bold text-red-600 mt-1">👙 PORTARE IL COSTUME! O va bene anche nudi 😂</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🐟</span>
+                            <div><span class="text-xs font-extrabold text-indigo-600">20:30</span><h4 class="font-bold text-base">Cena a Base di Pesce 🦞</h4><p class="text-sm text-gray-600">Cena sul litorale a Marina di Castagneto Carducci.</p>
+                            <div class="mt-2 bg-indigo-50 border border-indigo-100 rounded-xl p-3 text-xs text-indigo-800 space-y-1"><p>🍽️ <strong>Ristorante:</strong> Sole Luna. Viale Italia, 42 (15 min di macchina dalla degustazione).</p><p>✅ <strong>Prenotazione:</strong> Per 7 persone a nome <em>Nicholas Barbieri</em>.</p></div></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-gray-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🌙</span>
+                            <div><span class="text-xs font-extrabold text-gray-600">21:30 - 22:00</span><h4 class="font-bold text-base">Rientro a San Gimignano</h4><p class="text-sm text-gray-600">Partenza da Bolgheri, rientro in hotel per le 23:00/23:30 (~120 km, ~1h30m). Nanna strameritata.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 4 -->
+                <div id="day-content-4" class="day-panel hidden space-y-6">
+                    <div class="bg-gradient-to-r from-amber-50 to-orange-50 p-4 rounded-2xl flex items-center justify-between border border-amber-100/50">
+                        <div><span class="text-xs uppercase tracking-wider text-tuscan-gold font-bold">Domenica 24 Maggio · Giorno 4</span><h3 class="font-comfortaa font-bold text-xl text-tuscan-dark">Borghi, Siena e Rientro 🏰</h3></div>
+                        <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-full">🏠 Rientro a Dongo</span>
+                    </div>
+                    <div class="relative border-l-2 border-dashed border-amber-200 pl-6 ml-4 space-y-6">
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-amber-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🚐</span>
+                            <div><span class="text-xs font-extrabold text-amber-600">08:30</span><h4 class="font-bold text-base">Check-out e Partenza da San Gimignano</h4><p class="text-sm text-gray-600">Si lascia San Gimignano in direzione Monteriggioni (20 km, ~25 min).</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-emerald-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🏰</span>
+                            <div><span class="text-xs font-extrabold text-emerald-600">09:10 - 11:30</span><h4 class="font-bold text-base">Giretto a Monteriggioni ⚔️</h4><p class="text-sm text-gray-600">Esplorazione del borgo racchiuso nelle magnifiche mura medievali intatte. Visita: ~2h20m.</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">📍</span>
+                            <div><span class="text-xs font-extrabold text-blue-600">12:00</span><h4 class="font-bold text-base">Arrivo a Siena 🦓</h4><p class="text-sm text-gray-600">Giro della splendida Piazza del Campo, shopping e merenda toscana. Da Monteriggioni ~15 km, ~20 min.</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-rose-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">👋</span>
+                            <div><span class="text-xs font-extrabold text-rose-600">16:30</span><h4 class="font-bold text-base">Addio Toscana, Partenza per Dongo 🫡</h4><p class="text-sm text-gray-600">Iniziamo il viaggio di rientro verso casa.</p></div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-10 top-0.5 bg-gray-800 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm border-4 border-white shadow">🏠</span>
+                            <div><span class="text-xs font-extrabold text-gray-800">23:00</span><h4 class="font-bold text-base">Arrivo a Casa 🎊</h4><p class="text-sm text-gray-600">Arrivo previsto a Dongo (~360 km, ~6h30m). Fine della leggendaria Super-Tuscany 2026!</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="space-y-8">
+            <!-- MULTIMETRO FUN -->
+            <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl p-6 shadow-sm border border-red-100">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="bg-red-500 text-white p-2 rounded-xl text-sm shadow">⚖️</span>
+                    <div><h3 class="font-comfortaa font-bold text-lg text-red-950">Il Multimetro Fun 💸</h3><p class="text-xs text-red-700">Calcolatore delle sanzioni!</p></div>
+                </div>
+                <div class="space-y-3" id="fine-rules-container">
+                    <!-- regole generate da JS -->
+                </div>
+                <div class="mt-4 pt-4 border-t border-red-200/60 flex items-center justify-between">
+                    <span class="text-sm font-bold text-red-950">Fondo Multe Accumulato:</span>
+                    <span id="fine-total" class="text-2xl font-black text-red-700">0.00 €</span>
+                </div>
+            </div>
+
+            <!-- CASSA COMUNE -->
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-orange-100">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="bg-tuscan-olive text-white p-2 rounded-xl text-sm shadow">🧮</span>
+                    <div><h3 class="font-comfortaa font-bold text-lg text-tuscan-slate">Cassa Comune & Spese 💰</h3><p class="text-xs text-gray-500">Dividi le spese (÷7)</p></div>
+                </div>
+                <div class="space-y-4 text-xs">
+                    <div><label class="block font-bold text-gray-600 mb-1">Importo Totale Spesa (€)</label><input type="number" id="expense-amount" placeholder="Es. 140" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-tuscan-gold outline-none text-sm font-bold"></div>
+                    <div><label class="block font-bold text-gray-600 mb-1">Descrizione</label><input type="text" id="expense-desc" placeholder="Es. Cena fiorentina" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-tuscan-gold outline-none text-sm"></div>
+                    <button onclick="calculateShare()" class="w-full bg-tuscan-olive hover:bg-green-800 text-white font-bold py-3 px-4 rounded-xl transition flex items-center justify-center gap-2">Calcola Quota</button>
+                    <div id="share-output" class="hidden bg-green-50 border border-green-100 p-4 rounded-2xl text-green-950">
+                        <p class="text-center font-bold text-base">Ciascuno deve versare:</p>
+                        <p id="share-value" class="text-center text-3xl font-black text-tuscan-olive my-2">0.00 €</p>
+                        <p id="share-detail" class="text-center text-[11px] text-green-700 italic"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LISTA PROMEMORIA -->
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-orange-100">
+                <h3 class="font-comfortaa font-bold text-lg text-tuscan-slate mb-4">📋 Lista Promemoria</h3>
+                <div id="checklist-container" class="space-y-2"></div>
+                <div class="mt-3 flex gap-2">
+                    <input type="text" id="new-checklist-item" placeholder="Aggiungi voce..." class="flex-1 bg-gray-50 border border-gray-200 rounded-xl p-2 text-xs focus:ring-2 focus:ring-tuscan-gold outline-none">
+                    <button onclick="addChecklistItem()" class="bg-tuscan-gold text-white px-3 py-2 rounded-xl text-xs font-bold hover:bg-amber-600 transition">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="max-w-6xl mx-auto px-4 mt-12 text-center text-xs text-gray-500">
+    <p class="font-comfortaa font-bold text-tuscan-wine">SUPERT-USCANY 2026 · 21-24 Maggio</p>
+    <p class="mt-1">"La Toscana è un paesaggio che non ha confini, dove il cibo e il vino sono poesia pura."</p>
+</footer>
+
+<!-- ============ MODAL: PARTECIPANTI ============ -->
+<div id="participants-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden opacity-0 transition-all duration-300">
+    <div class="bg-[#f9f6f0] w-full max-w-6xl max-h-[95vh] overflow-y-auto rounded-[32px] border-4 border-tuscan-wine p-6 md:p-8 shadow-2xl relative">
+        <button onclick="closeModal('participants-modal')" class="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 bg-tuscan-wine text-white rounded-full flex items-center justify-center hover:bg-red-800 transition shadow-lg z-10">✕</button>
+        <div class="text-center mb-6">
+            <span class="text-xs uppercase tracking-widest text-tuscan-gold font-bold bg-amber-100 px-3 py-1 rounded-full">📜 Albo d'Onore</span>
+            <h2 class="font-comfortaa font-extrabold text-3xl md:text-5xl text-tuscan-wine mt-2">L'Albo degli Eroi</h2>
+            <p class="text-sm text-gray-600 mt-2 max-w-lg mx-auto">Le reali, scottanti e ironiche verità sui 7 valorosi che sfideranno i colli toscani.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+            <!-- GIO -->
+            <div class="flex flex-col bg-[#4a6b8c] rounded-3xl overflow-hidden shadow-lg border-2 border-[#3b5975] hover:scale-[1.02] transition-transform duration-200">
+                <div class="p-4 flex justify-center bg-[#4a6b8c]">
+                    <svg class="w-full aspect-[4/5] max-h-[220px]" viewBox="0 0 200 250">
+                        <rect width="200" height="250" fill="#4a6b8c" rx="20"/>
+                        <circle cx="100" cy="110" r="75" fill="#d93829" stroke="white" stroke-width="4"/>
+                        <path d="M 85 70 L 105 50 M 90 55 L 95 65" stroke="#f1c40f" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M 115 110 A 30 30 0 1 1 100 70 L 100 80 A 20 20 0 1 0 110 110 Z" fill="#f1c40f"/>
+                        <polygon points="100,25 104,35 115,35 107,42 110,52 100,45 90,52 93,42 85,35 96,35" fill="#f1c40f"/>
+                        <ellipse cx="100" cy="205" rx="50" ry="40" fill="#c0392b"/>
+                        <rect x="52" y="175" width="22" height="8" fill="#f1c40f" rx="2"/>
+                        <rect x="126" y="175" width="22" height="8" fill="#f1c40f" rx="2"/>
+                        <polygon points="90,185 100,195 110,185 100,175" fill="#7f0000"/>
+                        <rect x="88" y="150" width="24" height="25" fill="#e67e22"/>
+                        <polygon points="88,160 100,175 112,160" fill="white"/>
+                        <polygon points="60,120 100,165 140,120 100,90" fill="#e67e22"/>
+                        <polygon points="60,120 75,135 100,135" fill="white"/>
+                        <polygon points="140,120 125,135 100,135" fill="white"/>
+                        <polygon points="92,135 100,145 108,135" fill="#2c3e50"/>
+                        <ellipse cx="85" cy="115" rx="7" ry="4" fill="white" transform="rotate(-10, 85, 115)"/>
+                        <circle cx="86" cy="115" r="3" fill="#2c3e50"/>
+                        <ellipse cx="115" cy="115" rx="7" ry="4" fill="white" transform="rotate(10, 115, 115)"/>
+                        <circle cx="114" cy="115" r="3" fill="#2c3e50"/>
+                        <path d="M 75 108 L 90 112" stroke="#d35400" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M 125 108 L 110 112" stroke="#d35400" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M 62,100 C 62,70 138,70 138,100 Z" fill="#7f8c8d"/>
+                        <rect x="70" y="70" width="60" height="25" fill="#7f8c8d" rx="5"/>
+                        <circle cx="100" cy="80" r="10" fill="#d35400"/>
+                        <polygon points="100,74 102,78 107,78 103,81 105,86 100,83 95,86 97,81 93,78 98,78" fill="#f1c40f"/>
+                        <rect x="52" y="90" width="15" height="30" fill="#7f8c8d" rx="3"/>
+                        <rect x="133" y="90" width="15" height="30" fill="#7f8c8d" rx="3"/>
+                        <path d="M 140 160 C 170 140 190 180 165 205 C 150 215 140 185 140 160 Z" fill="#d35400"/>
+                        <path d="M 165 205 C 175 195 190 180 175 165 L 165 205" fill="white"/>
+                        <text x="100" y="222" font-family="Comfortaa" font-weight="bold" font-size="18" fill="white" text-anchor="middle">GIO 🦊</text>
+                        <text x="100" y="238" font-family="Plus Jakarta Sans" font-size="11" fill="#dbeafe" text-anchor="middle">'La Volpe'</text>
+                    </svg>
+                </div>
+                <div class="p-5 bg-slate-900 text-white flex-1">
+                    <span class="text-[10px] font-bold text-orange-400 uppercase tracking-widest block mb-1">🦊 Dittatore Rosso Impaziente</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">Comunista convinto che ha però deciso l'itinerario e lo ha <em>imposto</em> a tutti. Se salta il pasto, la pazienza evapora in 2 secondi netti. Sta migliorando, ma sai com'è: <em>"la volpe perde il pelo ma non il vizio!"</em></p>
+                </div>
+            </div>
+
+            <!-- ANNA -->
+            <div class="flex flex-col bg-[#4a6b8c] rounded-3xl overflow-hidden shadow-lg border-2 border-[#3b5975] hover:scale-[1.02] transition-transform duration-200">
+                <div class="p-4 flex justify-center bg-[#4a6b8c]">
+                    <svg class="w-full aspect-[4/5] max-h-[220px]" viewBox="0 0 200 250">
+                        <rect width="200" height="250" fill="#4a6b8c" rx="20"/>
+                        <circle cx="100" cy="110" r="75" fill="#aed6f1" stroke="white" stroke-width="4"/>
+                        <ellipse cx="100" cy="120" rx="42" ry="46" fill="white"/>
+                        <path d="M 65 95 C 60 110 75 115 80 100 Z" fill="#2c3e50"/>
+                        <path d="M 125 110 C 135 125 145 115 135 100 Z" fill="#2c3e50"/>
+                        <ellipse cx="100" cy="140" rx="30" ry="20" fill="#f5b041"/>
+                        <ellipse cx="100" cy="140" rx="28" ry="17" fill="#ffccd5"/>
+                        <circle cx="90" cy="140" r="4" fill="#c0392b"/>
+                        <circle cx="110" cy="140" r="4" fill="#c0392b"/>
+                        <path d="M 70 85 C 60 70 50 75 55 85 Z" fill="#f5b041" transform="rotate(-15, 70, 85)"/>
+                        <path d="M 130 85 C 140 70 150 75 145 85 Z" fill="#f5b041" transform="rotate(15, 130, 85)"/>
+                        <ellipse cx="55" cy="100" rx="18" ry="8" fill="#ffccd5" transform="rotate(-30, 55, 100)"/>
+                        <ellipse cx="145" cy="100" rx="18" ry="8" fill="#ffccd5" transform="rotate(30, 145, 100)"/>
+                        <ellipse cx="85" cy="110" rx="6" ry="8" fill="white"/><circle cx="85" cy="110" r="3" fill="#2c3e50"/>
+                        <ellipse cx="115" cy="110" rx="6" ry="8" fill="white"/><circle cx="115" cy="110" r="3" fill="#2c3e50"/>
+                        <path d="M 80,82 C 80,72 120,72 120,82 Z" fill="white"/>
+                        <rect x="85" y="80" width="30" height="4" fill="#2c3e50"/>
+                        <g transform="translate(130, 50)">
+                            <circle cx="20" cy="20" r="18" fill="white" stroke="red" stroke-width="3"/>
+                            <line x1="7" y1="7" x2="33" y2="33" stroke="red" stroke-width="3"/>
+                            <path d="M 12 12 L 28 12 L 28 28 L 12 28 Z" fill="none" stroke="#2980b9" stroke-width="1.5" stroke-dasharray="2,2"/>
+                            <text x="20" y="24" font-size="6" font-weight="bold" fill="red" text-anchor="middle">TENDA</text>
+                        </g>
+                        <text x="100" y="222" font-family="Comfortaa" font-weight="bold" font-size="18" fill="white" text-anchor="middle">ANNA 🐄</text>
+                        <text x="100" y="238" font-family="Plus Jakarta Sans" font-size="11" fill="#dbeafe" text-anchor="middle">'La Vacca'</text>
+                    </svg>
+                </div>
+                <div class="p-5 bg-slate-900 text-white flex-1">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">🐄 Maniaca dell'Igiene & Tende</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">Ha reso titanica la scelta degli alloggi con standard igienici degni della NASA. La sua fobia assoluta? La doccia con la tenda in plastica. Fortuna vuole che farà tutto il viaggio dormendo in macchina perché è <em>sempre stanca</em>.</p>
+                </div>
+            </div>
+
+            <!-- SANDRINO -->
+            <div class="flex flex-col bg-[#4a6b8c] rounded-3xl overflow-hidden shadow-lg border-2 border-[#3b5975] hover:scale-[1.02] transition-transform duration-200">
+                <div class="p-4 flex justify-center bg-[#4a6b8c]">
+                    <svg class="w-full aspect-[4/5] max-h-[220px]" viewBox="0 0 200 250">
+                        <rect width="200" height="250" fill="#4a6b8c" rx="20"/>
+                        <circle cx="100" cy="110" r="75" fill="#a9dfbf" stroke="white" stroke-width="4"/>
+                        <ellipse cx="95" cy="135" rx="55" ry="35" fill="#3498db"/>
+                        <ellipse cx="90" cy="140" rx="48" ry="25" fill="#ebf5fb"/>
+                        <path d="M 140,135 Q 170,120 180,105 Q 165,115 155,135 Z" fill="#3498db"/>
+                        <path d="M 140,135 Q 170,150 180,165 Q 165,150 155,135 Z" fill="#3498db"/>
+                        <path d="M 95,100 C 95,80 85,75 80,80" stroke="#ebf5fb" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <path d="M 95,100 C 100,80 110,75 115,80" stroke="#ebf5fb" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <polygon points="75,98 90,65 105,92" fill="#e74c3c" transform="rotate(-10, 90, 80)"/>
+                        <circle cx="85" cy="62" r="5" fill="#f1c40f"/>
+                        <ellipse cx="60" cy="155" rx="15" ry="8" fill="#2980b9" transform="rotate(30, 60, 155)"/>
+                        <path d="M 68,125 Q 73,118 78,125" stroke="#2c3e50" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <path d="M 65,142 Q 78,155 85,142" stroke="#2c3e50" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <path d="M 72,147 C 72,152 78,152 78,147 Z" fill="#e74c3c"/>
+                        <g transform="translate(125, 55)"><rect x="0" y="0" width="40" height="20" fill="white" stroke="#2c3e50" stroke-width="2" rx="3"/><text x="20" y="14" font-family="sans-serif" font-weight="bold" font-size="10" fill="#c0392b" text-anchor="middle">27=20</text></g>
+                        <text x="100" y="222" font-family="Comfortaa" font-weight="bold" font-size="18" fill="white" text-anchor="middle">SANDRINO 🐋</text>
+                        <text x="100" y="238" font-family="Plus Jakarta Sans" font-size="11" fill="#dbeafe" text-anchor="middle">'Il Balenottero'</text>
+                    </svg>
+                </div>
+                <div class="p-5 bg-slate-900 text-white flex-1">
+                    <span class="text-[10px] font-bold text-green-400 uppercase tracking-widest block mb-1">🐋 Il Burlone Iperattivo</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">Ha 27 anni ma la maturità emotiva di un ragazzino di 20. Pirla insuperabile, pagliaccio onnipresente e burlone ad ogni curva. Per lui la vita è solo divertimento frenetico — non si ferma mai.</p>
+                </div>
+            </div>
+
+            <!-- CLAUDIO -->
+            <div class="flex flex-col bg-[#4a6b8c] rounded-3xl overflow-hidden shadow-lg border-2 border-[#3b5975] hover:scale-[1.02] transition-transform duration-200">
+                <div class="p-4 flex justify-center bg-[#4a6b8c]">
+                    <svg class="w-full aspect-[4/5] max-h-[220px]" viewBox="0 0 200 250">
+                        <rect width="200" height="250" fill="#4a6b8c" rx="20"/>
+                        <circle cx="100" cy="110" r="75" fill="#fadbd8" stroke="white" stroke-width="4"/>
+                        <ellipse cx="112" cy="115" rx="40" ry="30" fill="#e74c3c"/>
+                        <ellipse cx="100" cy="130" rx="35" ry="20" fill="#fadbd8"/>
+                        <path d="M 75,100 Q 68,80 72,70 Q 80,85 78,100 Z" fill="#e74c3c"/>
+                        <path d="M 75,100 Q 68,80 72,70 Q 80,85 78,100 Z" fill="#f5cba7" transform="scale(0.7) translate(39, 48)"/>
+                        <polygon points="68,135 55,128 58,142" fill="#e74c3c"/>
+                        <path d="M 125,92 C 140,80 155,80 160,85" stroke="#e74c3c" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <path d="M 125,95 C 135,70 148,65 152,70" stroke="#e74c3c" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <circle cx="118" cy="95" r="3" fill="black"/>
+                        <path d="M 112,90 L 123,94" stroke="#2c3e50" stroke-width="2"/>
+                        <rect x="115" y="115" width="20" height="25" fill="#f1c40f" rx="3"/>
+                        <rect x="110" y="120" width="10" height="15" fill="none" stroke="#f1c40f" stroke-width="3" rx="2"/>
+                        <ellipse cx="125" cy="115" rx="12" ry="6" fill="white"/>
+                        <text x="100" y="222" font-family="Comfortaa" font-weight="bold" font-size="18" fill="white" text-anchor="middle">CLAUDIO 🦐</text>
+                        <text x="100" y="238" font-family="Plus Jakarta Sans" font-size="11" fill="#dbeafe" text-anchor="middle">'Il Gamberetto'</text>
+                    </svg>
+                </div>
+                <div class="p-5 bg-slate-900 text-white flex-1">
+                    <span class="text-[10px] font-bold text-rose-400 uppercase tracking-widest block mb-1">🦐 Pessimista Cronico & Alcolico</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">Pessimista cronico, odia tutti, numero uno delle battute di merda. Affoga i dispiaceri nel vino, probabilmente per dimenticare che le dimensioni lì sotto evocano un crostaceo. Alcolizzato? Si può darsi.</p>
+                </div>
+            </div>
+
+            <!-- CIUSE -->
+            <div class="flex flex-col bg-[#4a6b8c] rounded-3xl overflow-hidden shadow-lg border-2 border-[#3b5975] hover:scale-[1.02] transition-transform duration-200">
+                <div class="p-4 flex justify-center bg-[#4a6b8c]">
+                    <svg class="w-full aspect-[4/5] max-h-[220px]" viewBox="0 0 200 250">
+                        <rect width="200" height="250" fill="#4a6b8c" rx="20"/>
+                        <circle cx="100" cy="110" r="75" fill="#fdebd0" stroke="white" stroke-width="4"/>
+                        <ellipse cx="100" cy="115" rx="22" ry="48" fill="#a04000" transform="rotate(-15, 100, 115)"/>
+                        <ellipse cx="90" cy="150" rx="18" ry="16" fill="#ca6f1e" transform="rotate(-15, 90, 150)"/>
+                        <circle cx="82" cy="146" r="4" fill="#1c2833"/>
+                        <circle cx="94" cy="152" r="4" fill="#1c2833"/>
+                        <circle cx="94" cy="90" r="12" fill="white"/>
+                        <circle cx="95" cy="90" r="5" fill="#2c3e50"/>
+                        <circle cx="114" cy="96" r="10" fill="white"/>
+                        <circle cx="114" cy="96" r="4" fill="#2c3e50"/>
+                        <path d="M 85,70 Q 75,45 85,55 Z" fill="#a04000"/>
+                        <path d="M 112,78 Q 118,52 118,65 Z" fill="#a04000"/>
+                        <g transform="translate(115, 120) rotate(-10)">
+                            <path d="M 10,0 L 10,30 Q 10,40 25,35" stroke="#f1c40f" stroke-width="4" fill="none"/>
+                            <polygon points="5,0 20,0 12,-15" fill="#f1c40f"/>
+                            <circle cx="13" cy="20" r="6" fill="#f1c40f"/>
+                        </g>
+                        <rect x="52" y="80" width="16" height="24" fill="white" rx="2" transform="rotate(25, 52, 80)"/>
+                        <line x1="56" y1="84" x2="64" y2="88" stroke="red" stroke-width="2"/>
+                        <g transform="translate(130, 60) scale(0.7)">
+                            <path d="M 20,0 L 22,12 L 32,5 L 25,15 L 35,20 L 23,22 L 20,32 L 17,22 L 5,20 L 15,15 L 8,5 L 18,12 Z" fill="#27ae60"/>
+                        </g>
+                        <text x="100" y="222" font-family="Comfortaa" font-weight="bold" font-size="18" fill="white" text-anchor="middle">CIUSE 🐎</text>
+                        <text x="100" y="238" font-family="Plus Jakarta Sans" font-size="11" fill="#dbeafe" text-anchor="middle">'Il Cavallo'</text>
+                    </svg>
+                </div>
+                <div class="p-5 bg-slate-900 text-white flex-1">
+                    <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest block mb-1">🐎 Scommettitore, Tossico & Tubista</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">Ludopatico sfrenato di ippica e giochi d'azzardo — un vizio tira l'altro. Per uscire dalla dipendenza ha preso a suonare la tuba, ma tutti lo consigliano di passare al triangolo. Obiettivamente più silenzioso.</p>
+                </div>
+            </div>
+
+            <!-- MARCO -->
+            <div class="flex flex-col bg-[#4a6b8c] rounded-3xl overflow-hidden shadow-lg border-2 border-[#3b5975] hover:scale-[1.02] transition-transform duration-200">
+                <div class="p-4 flex justify-center bg-[#4a6b8c]">
+                    <svg class="w-full aspect-[4/5] max-h-[220px]" viewBox="0 0 200 250">
+                        <rect width="200" height="250" fill="#4a6b8c" rx="20"/>
+                        <circle cx="100" cy="110" r="75" fill="#eaeded" stroke="white" stroke-width="4"/>
+                        <rect x="50" y="115" width="45" height="40" fill="#ba4a00" rx="3"/>
+                        <polygon points="45,115 72,90 100,115" fill="#78281f"/>
+                        <circle cx="72" cy="135" r="10" fill="#1c2833"/>
+                        <ellipse cx="112" cy="120" rx="26" ry="24" fill="#d35400"/>
+                        <path d="M 94,106 Q 74,66 94,96 Z" fill="#d35400"/>
+                        <path d="M 94,106 Q 74,66 94,96 Z" fill="#fadbd8" transform="scale(0.8) translate(28, 25)"/>
+                        <path d="M 130,106 Q 150,66 130,96 Z" fill="#d35400"/>
+                        <path d="M 130,106 Q 150,66 130,96 Z" fill="#fadbd8" transform="scale(0.8) translate(30, 25)"/>
+                        <circle cx="100" cy="115" r="7" fill="black"/>
+                        <circle cx="98" cy="113" r="2" fill="white"/>
+                        <circle cx="124" cy="115" r="7" fill="black"/>
+                        <circle cx="122" cy="113" r="2" fill="white"/>
+                        <ellipse cx="112" cy="128" rx="8" ry="6" fill="#f5b041"/>
+                        <polygon points="109,125 115,125 112,129" fill="black"/>
+                        <path d="M 95,142 Q 112,152 129,142" stroke="#f1c40f" stroke-width="4" fill="none"/>
+                        <path d="M 94,96 Q 112,80 130,96 C 135,110 142,135 138,148 C 128,150 120,135 112,130 C 104,135 96,150 86,148 C 82,135 89,110 94,96 Z" fill="#1c2833"/>
+                        <text x="100" y="222" font-family="Comfortaa" font-weight="bold" font-size="18" fill="white" text-anchor="middle">MARCO 🐺</text>
+                        <text x="100" y="238" font-family="Plus Jakarta Sans" font-size="11" fill="#dbeafe" text-anchor="middle">'Il Doggy'</text>
+                    </svg>
+                </div>
+                <div class="p-5 bg-slate-900 text-white flex-1">
+                    <span class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block mb-1">🐺 Chihuahua con Cuccia in Giardino</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">Nella sua vita ci sono solo i suoi due Husky, che tratta come principi di sangue reale. I cani dormono nel letto matrimoniale, lui nella cuccia in giardino. Non è un problema: dice che sia persino più comodo.</p>
+                </div>
+            </div>
+
+            <!-- FRANCI -->
+            <div class="flex flex-col bg-[#4a6b8c] rounded-3xl overflow-hidden shadow-lg border-2 border-[#3b5975] hover:scale-[1.02] transition-transform duration-200">
+                <div class="p-4 flex justify-center bg-[#4a6b8c]">
+                    <svg class="w-full aspect-[4/5] max-h-[220px]" viewBox="0 0 200 250">
+                        <rect width="200" height="250" fill="#4a6b8c" rx="20"/>
+                        <circle cx="100" cy="110" r="75" fill="#fce4d6" stroke="white" stroke-width="4"/>
+                        <ellipse cx="100" cy="125" rx="24" ry="34" fill="#d35400"/>
+                        <circle cx="85" cy="125" r="2.5" fill="white"/>
+                        <circle cx="88" cy="131" r="2" fill="white"/>
+                        <circle cx="115" cy="125" r="2.5" fill="white"/>
+                        <circle cx="112" cy="131" r="2" fill="white"/>
+                        <path d="M 88,94 L 78,74 M 82,84 L 72,84" stroke="#873600" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M 112,94 L 122,74 M 108,84 L 118,84" stroke="#873600" stroke-width="3" stroke-linecap="round"/>
+                        <ellipse cx="88" cy="114" rx="8" ry="6" fill="#1c2833"/>
+                        <circle cx="86" cy="112" r="2.5" fill="white"/>
+                        <ellipse cx="112" cy="114" rx="8" ry="6" fill="#1c2833"/>
+                        <circle cx="110" cy="112" r="2.5" fill="white"/>
+                        <path d="M 78,110 L 82,112" stroke="#1c2833" stroke-width="1.5"/>
+                        <path d="M 122,110 L 118,112" stroke="#1c2833" stroke-width="1.5"/>
+                        <ellipse cx="100" cy="138" rx="7" ry="5" fill="#1c2833"/>
+                        <path d="M 70,120 C 70,90 130,90 130,120 C 130,140 145,160 140,185 L 60,185 C 55,160 70,140 70,120 Z" fill="#6c3483" opacity="0.8"/>
+                        <g transform="translate(130, 130)">
+                            <rect x="5" y="10" width="18" height="24" fill="#2ecc71" rx="3" opacity="0.9"/>
+                            <rect x="9" y="4" width="10" height="6" fill="#f5b041" rx="1"/>
+                            <circle cx="14" cy="22" r="5" fill="#27ae60"/>
+                            <text x="14" y="25" font-size="8" fill="white" font-weight="bold" text-anchor="middle">☠</text>
+                        </g>
+                        <text x="100" y="222" font-family="Comfortaa" font-weight="bold" font-size="18" fill="white" text-anchor="middle">FRANCI 🦌</text>
+                        <text x="100" y="238" font-family="Plus Jakarta Sans" font-size="11" fill="#dbeafe" text-anchor="middle">'La Cerbiatta'</text>
+                    </svg>
+                </div>
+                <div class="p-5 bg-slate-900 text-white flex-1">
+                    <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest block mb-1">🦌 Misteriosa Avvelenatrice della Valtellina</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">La new entry. Si sa poco, rimane vaga e misteriosa. Tutti sospettano che rosichi perché abita in Valtellina mentre gli altri vivono sul meraviglioso Lago di Como. Prima o poi ci avvelenerà tutti. Sorrisi sempre un po' troppo dolci.</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="mt-8 pt-4 border-t border-gray-200 text-center text-xs text-gray-400">Premi la X o clicca fuori per tornare alla Dashboard.</div>
+    </div>
+</div>
+
+<!-- ============ MODAL: MANGIARE E BERE ============ -->
+<div id="food-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden opacity-0 transition-all duration-300">
+    <div class="bg-[#f9f6f0] w-full max-w-4xl max-h-[95vh] overflow-y-auto rounded-[32px] border-4 border-tuscan-wine p-6 md:p-8 shadow-2xl relative">
+        <button onclick="closeModal('food-modal')" class="absolute top-4 right-4 w-10 h-10 bg-tuscan-wine text-white rounded-full flex items-center justify-center hover:bg-red-800 transition shadow-lg z-10">✕</button>
+        <div class="text-center mb-6">
+            <span class="text-xs uppercase tracking-widest text-tuscan-gold font-bold bg-amber-100 px-3 py-1 rounded-full">🍽️ Food & Wine</span>
+            <h2 class="font-comfortaa font-extrabold text-3xl md:text-4xl text-tuscan-wine mt-2">Mangiare e Bere 🍷</h2>
+            <p class="text-sm text-gray-600 mt-1">Tutto quello che entra in corpo, in ordine cronologico</p>
+        </div>
+        <div class="space-y-6">
+
+            <!-- GIO 21 -->
+            <div>
+                <h3 class="font-comfortaa font-bold text-xl text-tuscan-wine mb-3 flex items-center gap-2">🏛️ Giovedì 21 — Firenze</h3>
+                <div class="space-y-3">
+                    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">🥖</span>
+                            <div><span class="text-xs font-bold text-amber-700 uppercase">Colazione · 05:00</span><h4 class="font-bold">Pane, Salame & Vino — OBBLIGATORIA</h4><p class="text-xs text-gray-600 mt-1">In macchina, partenza da Dongo. Chi non mangia: multa 7€ 💸</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-gray-100 rounded-2xl p-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">🥪</span>
+                            <div><span class="text-xs font-bold text-emerald-700 uppercase">Pranzo · ~13:00</span><h4 class="font-bold">Schiacciata fiorentina al sacco</h4><p class="text-xs text-gray-600 mt-1">📍 <strong>Antico Vinaio</strong> (consigliato) o Mercato Centrale · Firenze</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-rose-50 border border-rose-200 rounded-2xl p-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">🥩</span>
+                            <div><span class="text-xs font-bold text-rose-700 uppercase">Cena · 19:30 — PRENOTATO ✅</span><h4 class="font-bold">Fiorentina alla Trattoria dall'Oste</h4><p class="text-xs text-gray-600 mt-1">📍 Borgo San Lorenzo, 31, Firenze (9 min. a piedi dall'appartamento)</p><p class="text-xs text-gray-600">👤 A nome <strong>Anna Bellati</strong> · 7 persone · <span class="text-emerald-700 font-bold">10% di sconto!</span></p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VEN 22 -->
+            <div>
+                <h3 class="font-comfortaa font-bold text-xl text-tuscan-wine mb-3 flex items-center gap-2">🗽 Venerdì 22 — Firenze → San Gimignano</h3>
+                <div class="space-y-3">
+                    <div class="bg-white border border-gray-100 rounded-2xl p-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">🥙</span>
+                            <div><span class="text-xs font-bold text-emerald-700 uppercase">Pranzo · ~13:00</span><h4 class="font-bold">Lampredotto</h4><p class="text-xs text-gray-600 mt-1">📍 <strong>Il Cernacchio Food & Wine</strong> (consigliato) · Firenze</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-rose-50 border border-rose-200 rounded-2xl p-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">💀</span>
+                            <div><span class="text-xs font-bold text-rose-700 uppercase">Cena con Delitto · 20:00-20:30 — PRENOTATO ✅</span><h4 class="font-bold">La Mangiatoia</h4><p class="text-xs text-gray-600 mt-1">📍 Via Mainardi, 5, San Gimignano (6 min. a piedi dall'appartamento)</p><p class="text-xs text-gray-600">👤 A nome <strong>Nicholas</strong> · 7 persone</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SAB 23 -->
+            <div>
+                <h3 class="font-comfortaa font-bold text-xl text-tuscan-wine mb-3 flex items-center gap-2">🍷 Sabato 23 — Volterra → Bolgheri → Mare</h3>
+                <div class="space-y-3">
+                    <div class="bg-white border border-gray-100 rounded-2xl p-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">🍝</span>
+                            <div><span class="text-xs font-bold text-emerald-700 uppercase">Pranzo · ~12:00</span><h4 class="font-bold">Pranzo a Volterra o dintorni</h4><p class="text-xs text-gray-600 mt-1">Da valutare al momento sul posto.</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 border border-purple-200 rounded-2xl p-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">🍾</span>
+                            <div><span class="text-xs font-bold text-purple-700 uppercase">Degustazione · 17:00-18:30 — PRENOTATO ✅</span><h4 class="font-bold">Degustazione Villanovian</h4><p class="text-xs text-gray-600 mt-1">📍 Cantina Azienda Agricola Villa Noviana · Via Santa Maddalena, 172/B, Bolgheri</p><p class="text-xs text-gray-600">👤 A nome <strong>Claudio Barbieri</strong></p></div>
+                        </div>
+                    </div>
+                    <div class="bg-rose-50 border border-rose-200 rounded-2xl p-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">🐟</span>
+                            <div><span class="text-xs font-bold text-rose-700 uppercase">Cena al Mare · 20:30 — PRENOTATO ✅</span><h4 class="font-bold">Ristorante Sole Luna</h4><p class="text-xs text-gray-600 mt-1">📍 Viale Italia, 42, Marina di Castagneto Carducci (15 min di macchina dalla degustazione)</p><p class="text-xs text-gray-600">👤 A nome <strong>Nicholas Barbieri</strong> · 7 persone</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DOM 24 -->
+            <div>
+                <h3 class="font-comfortaa font-bold text-xl text-tuscan-wine mb-3 flex items-center gap-2">🏰 Domenica 24 — Monteriggioni → Siena → Casa</h3>
+                <div class="space-y-3">
+                    <div class="bg-white border border-gray-100 rounded-2xl p-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">🍴</span>
+                            <div><span class="text-xs font-bold text-emerald-700 uppercase">Pranzo · ~13:00</span><h4 class="font-bold">Pranzo a Siena</h4><p class="text-xs text-gray-600 mt-1">Da valutare al momento in base alla fame e agli umori del gruppo.</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-2xl">🍔</span>
+                            <div><span class="text-xs font-bold text-amber-700 uppercase">Cena · Strada Facendo</span><h4 class="font-bold">Cena del Ritorno — TBD</h4><p class="text-xs text-gray-600 mt-1">Un bel MC? Scherzi a parte, da valutare in base alla rotta e all'energia residua 😂</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="mt-8 pt-4 border-t border-gray-200 text-center text-xs text-gray-400">Premi X o clicca fuori per tornare.</div>
+    </div>
+</div>
+
+<!-- ============ MODAL: TAPPE PRINCIPALI ============ -->
+<div id="tappe-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden opacity-0 transition-all duration-300">
+    <div class="bg-[#f9f6f0] w-full max-w-4xl max-h-[95vh] overflow-y-auto rounded-[32px] border-4 border-emerald-700 p-6 md:p-8 shadow-2xl relative">
+        <button onclick="closeModal('tappe-modal')" class="absolute top-4 right-4 w-10 h-10 bg-emerald-700 text-white rounded-full flex items-center justify-center hover:bg-emerald-900 transition shadow-lg z-10">✕</button>
+        <div class="text-center mb-6">
+            <span class="text-xs uppercase tracking-widest text-emerald-700 font-bold bg-emerald-100 px-3 py-1 rounded-full">🗺️ Road Trip</span>
+            <h2 class="font-comfortaa font-extrabold text-3xl md:text-4xl text-emerald-800 mt-2">Tappe Principali</h2>
+            <p class="text-sm text-gray-600 mt-1">Tratte, distanze e dove si dorme 🛏️</p>
+        </div>
+
+        <!-- GIO 21 -->
+        <div class="mb-6">
+            <div class="bg-emerald-700 text-white rounded-2xl px-4 py-2 mb-3 flex items-center gap-2 font-bold">🏛️ Giovedì 21 Maggio — Giorno 1</div>
+            <div class="space-y-3">
+                <div class="bg-white rounded-xl p-3 border border-gray-100 flex items-center gap-4">
+                    <span class="text-3xl">🚐</span>
+                    <div class="flex-1"><p class="font-bold text-sm">Dongo → Firenze</p><p class="text-xs text-gray-500">~200 km · circa 2h30m · partenza 05:00 · arrivo ~10:00 (con soste)</p></div>
+                </div>
+                <div class="bg-indigo-50 rounded-xl p-3 border border-indigo-100 flex items-center gap-4">
+                    <span class="text-3xl">🏠</span>
+                    <div class="flex-1"><p class="font-bold text-sm">🛏️ Alloggio: Appartamento Airbnb — Via Monalda, 4, Firenze</p><p class="text-xs text-gray-500">Check-in dalle 14:00 · Prenotato da Gio</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VEN 22 -->
+        <div class="mb-6">
+            <div class="bg-emerald-700 text-white rounded-2xl px-4 py-2 mb-3 flex items-center gap-2 font-bold">🗽 Venerdì 22 Maggio — Giorno 2</div>
+            <div class="space-y-3">
+                <div class="bg-white rounded-xl p-3 border border-gray-100 flex items-center gap-4">
+                    <span class="text-3xl">🚐</span>
+                    <div class="flex-1"><p class="font-bold text-sm">Firenze → San Gimignano</p><p class="text-xs text-gray-500">~70 km · circa 1h10m · partenza 17:00 · arrivo ~18:10</p></div>
+                </div>
+                <div class="bg-indigo-50 rounded-xl p-3 border border-indigo-100 flex items-center gap-4">
+                    <span class="text-3xl">🏡</span>
+                    <div class="flex-1"><p class="font-bold text-sm">🛏️ Alloggio: La Locanda di Querecchio — San Gimignano</p><p class="text-xs text-gray-500">Check-in entro le 19:00 · Notte del 22 e 23 (rientro da Bolgheri)</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SAB 23 -->
+        <div class="mb-6">
+            <div class="bg-emerald-700 text-white rounded-2xl px-4 py-2 mb-3 flex items-center gap-2 font-bold">🍷 Sabato 23 Maggio — Giorno 3</div>
+            <div class="space-y-3">
+                <div class="bg-white rounded-xl p-3 border border-gray-100 flex items-center gap-4">
+                    <span class="text-3xl">🚐</span>
+                    <div class="flex-1"><p class="font-bold text-sm">San Gimignano → Volterra</p><p class="text-xs text-gray-500">~30 km · circa 40 min · partenza 09:00 · arrivo 09:45</p></div>
+                </div>
+                <div class="bg-white rounded-xl p-3 border border-gray-100 flex items-center gap-4">
+                    <span class="text-3xl">🚐</span>
+                    <div class="flex-1"><p class="font-bold text-sm">Volterra → Bolgheri</p><p class="text-xs text-gray-500">~70 km · circa 1h · partenza 14:00 · arrivo 15:00</p></div>
+                </div>
+                <div class="bg-white rounded-xl p-3 border border-gray-100 flex items-center gap-4">
+                    <span class="text-3xl">🚐</span>
+                    <div class="flex-1"><p class="font-bold text-sm">Bolgheri → Marina di Castagneto (cena al mare)</p><p class="text-xs text-gray-500">~15 km · circa 20 min · dopo la degustazione</p></div>
+                </div>
+                <div class="bg-white rounded-xl p-3 border border-gray-100 flex items-center gap-4">
+                    <span class="text-3xl">🚐</span>
+                    <div class="flex-1"><p class="font-bold text-sm">Marina di Castagneto → San Gimignano (rientro)</p><p class="text-xs text-gray-500">~120 km · circa 1h30m · partenza ~21:30-22:00 · arrivo ~23:00-23:30</p></div>
+                </div>
+                <div class="bg-indigo-50 rounded-xl p-3 border border-indigo-100 flex items-center gap-4">
+                    <span class="text-3xl">🏡</span>
+                    <div class="flex-1"><p class="font-bold text-sm">🛏️ Alloggio: La Locanda di Querecchio — San Gimignano</p><p class="text-xs text-gray-500">Rientro in tarda serata — nanna strameritata</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOM 24 -->
+        <div class="mb-6">
+            <div class="bg-emerald-700 text-white rounded-2xl px-4 py-2 mb-3 flex items-center gap-2 font-bold">🏰 Domenica 24 Maggio — Giorno 4</div>
+            <div class="space-y-3">
+                <div class="bg-white rounded-xl p-3 border border-gray-100 flex items-center gap-4">
+                    <span class="text-3xl">🚐</span>
+                    <div class="flex-1"><p class="font-bold text-sm">San Gimignano → Monteriggioni</p><p class="text-xs text-gray-500">~20 km · circa 25 min · partenza 08:30 · arrivo 09:10</p></div>
+                </div>
+                <div class="bg-white rounded-xl p-3 border border-gray-100 flex items-center gap-4">
+                    <span class="text-3xl">🚐</span>
+                    <div class="flex-1"><p class="font-bold text-sm">Monteriggioni → Siena</p><p class="text-xs text-gray-500">~15 km · circa 20 min · partenza 11:30 · arrivo 12:00</p></div>
+                </div>
+                <div class="bg-white rounded-xl p-3 border border-gray-100 flex items-center gap-4">
+                    <span class="text-3xl">🚐</span>
+                    <div class="flex-1"><p class="font-bold text-sm">Siena → Dongo (rientro finale)</p><p class="text-xs text-gray-500">~360 km · circa 4h30m (senza soste) · partenza 16:30 · arrivo ~23:00</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs text-amber-800">
+            ⚠️ I tempi di percorrenza sono stimati e non includono soste, traffico o deviazioni improvvise per "necessità fisiologiche panoramiche".
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-200 text-center text-xs text-gray-400">Premi X o clicca fuori per tornare.</div>
+    </div>
+</div>
+
+<!-- ============ MODAL: INTRATTENIMENTO ============ -->
+<div id="intrattenimento-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden opacity-0 transition-all duration-300">
+    <div class="bg-[#f9f6f0] w-full max-w-3xl max-h-[95vh] overflow-y-auto rounded-[32px] border-4 border-blue-600 p-6 md:p-8 shadow-2xl relative">
+        <button onclick="closeModal('intrattenimento-modal')" class="absolute top-4 right-4 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-800 transition shadow-lg z-10">✕</button>
+        <div class="text-center mb-6">
+            <span class="text-xs uppercase tracking-widest text-blue-600 font-bold bg-blue-100 px-3 py-1 rounded-full">🎉 Fun Zone</span>
+            <h2 class="font-comfortaa font-extrabold text-3xl md:text-4xl text-blue-800 mt-2">Intrattenimento</h2>
+            <p class="text-sm text-gray-600 mt-1">Playlist, nuove regole e cose da non dimenticare</p>
+        </div>
+
+        <!-- SPOTIFY PLAYLISTS -->
+        <div class="mb-8">
+            <h3 class="font-comfortaa font-bold text-xl text-blue-800 mb-3 flex items-center gap-2">🎵 Playlist & Jam Spotify</h3>
+            <div id="playlist-container" class="space-y-3 mb-3">
+                <!-- playlist items added dynamically -->
+            </div>
+            <div class="flex gap-2">
+                <input type="text" id="new-playlist-name" placeholder="Nome playlist (es. Vibes Toscani 🍷)" class="flex-1 bg-white border border-gray-200 rounded-xl p-3 text-xs focus:ring-2 focus:ring-blue-400 outline-none">
+                <input type="text" id="new-playlist-url" placeholder="Link Spotify/URL" class="flex-1 bg-white border border-gray-200 rounded-xl p-3 text-xs focus:ring-2 focus:ring-blue-400 outline-none">
+                <button onclick="addPlaylist()" class="bg-blue-600 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-blue-800 transition">+</button>
+            </div>
+        </div>
+
+        <!-- MULTIMETRO - AGGIUNGI REGOLE -->
+        <div class="mb-8">
+            <h3 class="font-comfortaa font-bold text-xl text-red-800 mb-3 flex items-center gap-2">⚖️ Aggiungi Regola al Multimetro</h3>
+            <div class="flex gap-2 flex-wrap">
+                <input type="text" id="new-rule-name" placeholder="Nome regola (es. Russare in macchina)" class="flex-1 min-w-[180px] bg-white border border-gray-200 rounded-xl p-3 text-xs focus:ring-2 focus:ring-red-400 outline-none">
+                <input type="number" id="new-rule-cost" placeholder="€ multa" class="w-24 bg-white border border-gray-200 rounded-xl p-3 text-xs focus:ring-2 focus:ring-red-400 outline-none">
+                <button onclick="addFineRule()" class="bg-red-500 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-red-700 transition">+ Aggiungi</button>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">Le nuove regole appariranno nel Multimetro Fun nella dashboard.</p>
+        </div>
+
+        <!-- PROMEMORIA - AGGIUNGI VOCI -->
+        <div class="mb-4">
+            <h3 class="font-comfortaa font-bold text-xl text-emerald-800 mb-3 flex items-center gap-2">📋 Promemoria — Aggiungi Voci</h3>
+            <div class="flex gap-2">
+                <input type="text" id="modal-checklist-item" placeholder="Aggiungi voce al promemoria..." class="flex-1 bg-white border border-gray-200 rounded-xl p-3 text-xs focus:ring-2 focus:ring-emerald-400 outline-none">
+                <button onclick="addChecklistFromModal()" class="bg-emerald-600 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-emerald-800 transition">+</button>
+            </div>
+            <div id="modal-checklist-preview" class="mt-3 space-y-1 text-xs text-gray-500 italic"><!-- preview --></div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-gray-200 text-center text-xs text-gray-400">Premi X o clicca fuori per tornare.</div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast-notif" class="fixed bottom-4 right-4 bg-tuscan-dark text-white text-xs font-bold py-3 px-5 rounded-2xl shadow-xl transition-all duration-300 opacity-0 transform translate-y-10 z-50 flex items-center gap-2">
+    <span class="text-tuscan-gold">🔔</span>
+    <span id="toast-text">Notifica di viaggio!</span>
+</div>
+
+<script>
+// ===== STATE =====
+let fineRules = [
+    { id: 'breakfast', name: 'No Pane, Salame o Vino a Colazione', cost: 7, count: 0 },
+    { id: 'delay', name: 'Ritardo Ingiustificato', cost: 5, count: 0 },
+    { id: 'complaint', name: 'Lamentele Inutili', cost: 3, count: 0 }
+];
+
+let checklistItems = [
+    { text: 'Pane, salame e vino in macchina 🥖🍷', done: false },
+    { text: 'Costume da bagno (o coraggio nudi!) 👙', done: false },
+    { text: 'Fumo per il Ciuse 🍁', done: false },
+    { text: 'Fegato pronto per le degustazioni 🍷', done: false },
+    { text: 'Scarpe comode per camminare 👟', done: false }
+];
+
+let playlists = [];
+
+// ===== COUNTDOWN =====
+const targetDate = new Date("2026-05-21T05:00:00").getTime();
+function updateCountdown() {
+    const diff = targetDate - Date.now();
+    if (diff < 0) { ['days','hours','mins','secs'].forEach(k => document.getElementById('countdown-'+k).innerText='00'); return; }
+    document.getElementById('countdown-days').innerText = String(Math.floor(diff/86400000)).padStart(2,'0');
+    document.getElementById('countdown-hours').innerText = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+    document.getElementById('countdown-mins').innerText = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    document.getElementById('countdown-secs').innerText = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+}
+updateCountdown(); setInterval(updateCountdown, 1000);
+
+// ===== TAB SWITCHING =====
+function switchTab(n) {
+    document.querySelectorAll('.day-panel').forEach(p => p.classList.add('hidden'));
+    document.getElementById('day-content-'+n).classList.remove('hidden');
+    document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('bg-white','text-tuscan-wine','shadow-sm'); b.classList.add('text-gray-500'); });
+    const btn = document.getElementById('tab-btn-'+n);
+    btn.classList.remove('text-gray-500'); btn.classList.add('bg-white','text-tuscan-wine','shadow-sm');
+    playSynthBeep();
+}
+
+// ===== MODALS =====
+function openModal(id) {
+    const m = document.getElementById(id);
+    m.classList.remove('hidden');
+    setTimeout(() => m.classList.remove('opacity-0'), 10);
+    if (id === 'participants-modal') playSound('clink');
+    if (id === 'intrattenimento-modal') renderModalChecklist();
+}
+function closeModal(id) {
+    const m = document.getElementById(id);
+    m.classList.add('opacity-0');
+    setTimeout(() => m.classList.add('hidden'), 300);
+}
+window.addEventListener('click', function(e) {
+    ['participants-modal','food-modal','tappe-modal','intrattenimento-modal'].forEach(id => {
+        const m = document.getElementById(id);
+        if (e.target === m) closeModal(id);
+    });
+});
+
+// ===== MULTIMETRO =====
+function renderFineRules() {
+    const c = document.getElementById('fine-rules-container');
+    c.innerHTML = '';
+    fineRules.forEach(rule => {
+        c.innerHTML += `<div class="bg-white p-3 rounded-2xl border border-red-100/60 flex items-center justify-between">
+            <div><h4 class="font-bold text-xs text-tuscan-slate">${rule.name}</h4><span class="text-xs font-extrabold text-red-600">+${rule.cost.toFixed(2)} €</span></div>
+            <div class="flex items-center gap-3">
+                <button onclick="updateFine('${rule.id}',-1)" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center font-bold text-xs">-</button>
+                <span id="count-${rule.id}" class="font-extrabold text-sm">${rule.count}</span>
+                <button onclick="updateFine('${rule.id}',1)" class="w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 text-red-700 flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+        </div>`;
+    });
+    updateFineTotal();
+}
+function updateFine(id, val) {
+    const rule = fineRules.find(r => r.id === id);
+    if (!rule) return;
+    rule.count = Math.max(0, rule.count + val);
+    renderFineRules();
+    if (val > 0) { showToast(`Multa da ${rule.cost}€ per: ${rule.name}!`); playSound('alarm'); } else { playSynthBeep(); }
+}
+function updateFineTotal() {
+    const total = fineRules.reduce((s, r) => s + r.cost * r.count, 0);
+    document.getElementById('fine-total').innerText = total.toFixed(2) + ' €';
+}
+function addFineRule() {
+    const name = document.getElementById('new-rule-name').value.trim();
+    const cost = parseFloat(document.getElementById('new-rule-cost').value);
+    if (!name || isNaN(cost) || cost <= 0) { showToast('Inserisci nome e importo validi!'); return; }
+    const id = 'rule_' + Date.now();
+    fineRules.push({ id, name, cost, count: 0 });
+    renderFineRules();
+    document.getElementById('new-rule-name').value = '';
+    document.getElementById('new-rule-cost').value = '';
+    showToast(`Nuova regola aggiunta: "${name}" · ${cost}€`);
+    playSynthBeep();
+}
+
+// ===== CASSA COMUNE =====
+function calculateShare() {
+    const amount = parseFloat(document.getElementById('expense-amount').value);
+    const desc = document.getElementById('expense-desc').value || 'Spesa generica';
+    if (isNaN(amount) || amount <= 0) { showToast('Inserisci un importo valido!'); return; }
+    const share = amount / 7;
+    document.getElementById('share-value').innerText = share.toFixed(2) + ' €';
+    document.getElementById('share-detail').innerText = `"${desc}" divisa per 7 amici.`;
+    document.getElementById('share-output').classList.remove('hidden');
+    showToast('Divisione completata!'); playSynthBeep();
+}
+
+// ===== CHECKLIST =====
+function renderChecklist() {
+    const c = document.getElementById('checklist-container');
+    c.innerHTML = '';
+    checklistItems.forEach((item, i) => {
+        c.innerHTML += `<label class="flex items-center gap-3 p-2 hover:bg-amber-50 rounded-xl cursor-pointer transition">
+            <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleCheck(${i})" class="w-4 h-4 rounded accent-amber-500">
+            <span class="text-xs font-semibold ${item.done ? 'line-through text-gray-400' : ''}">${item.text}</span>
+        </label>`;
+    });
+}
+function toggleCheck(i) { checklistItems[i].done = !checklistItems[i].done; renderChecklist(); renderModalChecklist(); }
+function addChecklistItem() {
+    const inp = document.getElementById('new-checklist-item');
+    if (!inp.value.trim()) return;
+    checklistItems.push({ text: inp.value.trim(), done: false });
+    inp.value = ''; renderChecklist(); renderModalChecklist();
+    showToast('Voce aggiunta!'); playSynthBeep();
+}
+function addChecklistFromModal() {
+    const inp = document.getElementById('modal-checklist-item');
+    if (!inp.value.trim()) return;
+    checklistItems.push({ text: inp.value.trim(), done: false });
+    inp.value = ''; renderChecklist(); renderModalChecklist();
+    showToast('Voce aggiunta al promemoria!'); playSynthBeep();
+}
+function renderModalChecklist() {
+    const c = document.getElementById('modal-checklist-preview');
+    if (!c) return;
+    c.innerHTML = checklistItems.map(i => `<div class="flex items-center gap-2">${i.done ? '✅' : '⬜'} ${i.text}</div>`).join('');
+}
+
+// ===== PLAYLIST =====
+function renderPlaylists() {
+    const c = document.getElementById('playlist-container');
+    if (!c) return;
+    if (playlists.length === 0) { c.innerHTML = '<p class="text-xs text-gray-400 italic">Nessuna playlist aggiunta ancora. Sii il DJ del viaggio! 🎧</p>'; return; }
+    c.innerHTML = playlists.map((p, i) => `<div class="bg-white border border-blue-100 rounded-xl p-3 flex items-center gap-3">
+        <span class="text-2xl">🎵</span>
+        <div class="flex-1">
+            <p class="font-bold text-xs">${p.name}</p>
+            ${p.url ? `<a href="${p.url}" target="_blank" class="text-[10px] text-blue-600 underline hover:text-blue-800 break-all">${p.url}</a>` : ''}
+        </div>
+        <button onclick="removePlaylist(${i})" class="text-gray-400 hover:text-red-500 text-xs">✕</button>
+    </div>`).join('');
+}
+function addPlaylist() {
+    const name = document.getElementById('new-playlist-name').value.trim();
+    const url = document.getElementById('new-playlist-url').value.trim();
+    if (!name) { showToast('Inserisci almeno il nome della playlist!'); return; }
+    playlists.push({ name, url });
+    document.getElementById('new-playlist-name').value = '';
+    document.getElementById('new-playlist-url').value = '';
+    renderPlaylists(); showToast(`Playlist "${name}" aggiunta! 🎵`); playSynthBeep();
+}
+function removePlaylist(i) { playlists.splice(i, 1); renderPlaylists(); }
+
+// ===== TOAST =====
+function showToast(text) {
+    const t = document.getElementById('toast-notif');
+    document.getElementById('toast-text').innerText = text;
+    t.classList.remove('opacity-0','translate-y-10'); t.classList.add('opacity-100','translate-y-0');
+    setTimeout(() => { t.classList.remove('opacity-100','translate-y-0'); t.classList.add('opacity-0','translate-y-10'); }, 3000);
+}
+
+// ===== SOUNDS =====
+function playSynthBeep() {
+    try { const s = new Tone.Synth().toDestination(); s.triggerAttackRelease("C5","16n",undefined,0.4); } catch(e) {}
+}
+function playSound(type) {
+    if (Tone.context.state !== 'running') Tone.start();
+    try {
+        if (type === 'horn') {
+            const s = new Tone.PolySynth(Tone.Synth).toDestination();
+            s.triggerAttackRelease(["F4","F#4"],"8n");
+            setTimeout(() => s.triggerAttackRelease(["F4","F#4"],"4n"), 250);
+            showToast('Biiiiip! Il van da Dongo è acceso! 🚐');
+        } else if (type === 'clink') {
+            const s = new Tone.MetalSynth({ frequency: 440, envelope: { attack: 0.001, decay: 1.5, release: 0.2 }, harmonicity: 5.1, resonance: 8000 }).toDestination();
+            s.triggerAttackRelease("C6","4n",undefined,0.7);
+            showToast('Cin cin! Brindisi toscano attivato! 🥂');
+        } else if (type === 'alarm') {
+            const s = new Tone.DuoSynth({ vibratoAmount: 0.5, vibratoRate: 5 }).toDestination();
+            s.triggerAttackRelease("A4","8n");
+            setTimeout(() => s.triggerAttackRelease("F4","8n"), 150);
+        }
+    } catch(e) { console.error(e); }
+}
+
+// ===== INIT =====
+renderFineRules();
+renderChecklist();
+renderPlaylists();
+</script>
+
+<script>
+const API_URL = "INCOLLA_URL_SCRIPT";
+
+// LOAD CHECKLIST
+async function loadChecklist() {
+  const res = await fetch(API_URL + "?type=checklist");
+  const data = await res.json();
+
+  const container = document.getElementById("checklist-container");
+  container.innerHTML = "";
+
+  data.forEach((row, index) => {
+    if (!row[0]) return;
+
+    const div = document.createElement("div");
+    div.className = "flex justify-between bg-gray-50 p-2 rounded";
+
+    div.innerHTML = `
+      <span>${row[0]}</span>
+      <button onclick="deleteChecklist(${index + 1})">❌</button>
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+// ADD CHECKLIST
+async function addChecklistItem() {
+  const input = document.getElementById("new-checklist-item");
+  const text = input.value;
+  if (!text) return;
+
+  await fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify({
+      type: "addChecklist",
+      text: text
+    })
+  });
+
+  input.value = "";
+  loadChecklist();
+}
+
+// DELETE CHECKLIST
+async function deleteChecklist(index) {
+  await fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify({
+      type: "deleteChecklist",
+      index: index
+    })
+  });
+
+  loadChecklist();
+}
+
+// EXPENSE SAVE
+async function calculateShare() {
+  const amount = document.getElementById("expense-amount").value;
+  const desc = document.getElementById("expense-desc").value;
+
+  if (!amount) return;
+
+  await fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify({
+      type: "addExpense",
+      desc: desc,
+      amount: amount
+    })
+  });
+
+  const share = (amount / 7).toFixed(2);
+
+  document.getElementById("share-output").classList.remove("hidden");
+  document.getElementById("share-value").innerText = share + " €";
+  document.getElementById("share-detail").innerText = desc;
+}
+
+// INIT
+window.onload = () => {
+  loadChecklist();
+};
+</script>
+
+</body>
+</html>
