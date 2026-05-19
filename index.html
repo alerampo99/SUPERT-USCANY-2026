@@ -827,18 +827,18 @@
 <script>
 // ===== STATE =====
 let fineRules = [
-    { id: 'breakfast', name: 'No Pane, Salame o Vino a Colazione', cost: 7, count: 0 },
-    { id: 'delay', name: 'Ritardo Ingiustificato', cost: 5, count: 0 },
-    { id: 'complaint', name: 'Lamentele Inutili', cost: 3, count: 0 }
+    //{ id: 'breakfast', name: 'No Pane, Salame o Vino a Colazione', cost: 7, count: 0 },
+    //{ id: 'delay', name: 'Ritardo Ingiustificato', cost: 5, count: 0 },
+    //{ id: 'complaint', name: 'Lamentele Inutili', cost: 3, count: 0 }
 ];
 
-let checklistItems = [
-    { text: 'Pane, salame e vino in macchina 🥖🍷', done: false },
-    { text: 'Costume da bagno (o coraggio nudi!) 👙', done: false },
-    { text: 'Fumo per il Ciuse 🍁', done: false },
-    { text: 'Fegato pronto per le degustazioni 🍷', done: false },
-    { text: 'Scarpe comode per camminare 👟', done: false }
-];
+//let checklistItems = [
+//    { text: 'Pane, salame e vino in macchina 🥖🍷', done: false },
+//    { text: 'Costume da bagno (o coraggio nudi!) 👙', done: false },
+//    { text: 'Fumo per il Ciuse 🍁', done: false },
+//    { text: 'Fegato pronto per le degustazioni 🍷', done: false },
+//    { text: 'Scarpe comode per camminare 👟', done: false }
+//];
 
 let playlists = [];
 
@@ -937,16 +937,16 @@ function calculateShare() {
 }
 
 // ===== CHECKLIST =====
-function renderChecklist() {
-    const c = document.getElementById('checklist-container');
-    c.innerHTML = '';
-    checklistItems.forEach((item, i) => {
-        c.innerHTML += `<label class="flex items-center gap-3 p-2 hover:bg-amber-50 rounded-xl cursor-pointer transition">
-            <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleCheck(${i})" class="w-4 h-4 rounded accent-amber-500">
-            <span class="text-xs font-semibold ${item.done ? 'line-through text-gray-400' : ''}">${item.text}</span>
-        </label>`;
-    });
-}
+//function renderChecklist() {
+//    const c = document.getElementById('checklist-container');
+//    c.innerHTML = '';
+//    checklistItems.forEach((item, i) => {
+//        c.innerHTML += `<label class="flex items-center gap-3 p-2 hover:bg-amber-50 rounded-xl cursor-pointer transition">
+//            <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleCheck(${i})" class="w-4 h-4 rounded accent-amber-500">
+//            <span class="text-xs font-semibold ${item.done ? 'line-through text-gray-400' : ''}">${item.text}</span>
+//        </label>`;
+//    });
+//}
 function toggleCheck(i) { checklistItems[i].done = !checklistItems[i].done; renderChecklist(); renderModalChecklist(); }
 function addChecklistItem() {
     const inp = document.getElementById('new-checklist-item');
